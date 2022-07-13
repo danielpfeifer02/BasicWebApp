@@ -43,7 +43,17 @@ public class QueryProcessor {
             return Integer.valueOf(Arrays.stream(vals).max().orElse(0)).toString();
         } else if (query.contains("square") && query.contains("cube")) {
             int index = 0;
-            return "";
+            for(int j=0; j<queryList.length; j++) {
+                if (queryList[j].equals(":")) {
+                    index = j+1;
+                    break;
+                }
+            }
+            int[] vals = new int[queryList.length-index];
+            for (int i=0; i<vals.length; i++){
+                Integer.parseInt(queryList[index+i].replace(",", ""));
+            }
+            return Integer.valueOf(Arrays.stream(vals).filter(x -> isCube(x) && isSquare(x)).findFirst().orElse(0)).toString();
         } else if (query.contains("multiplied by")) {
             int index = 0;
             for(int j=0; j<queryList.length; j++) {
@@ -65,5 +75,19 @@ public class QueryProcessor {
         } else { // TODO extend the programm here
             return "";
         }
+    }
+
+    public boolean isSquare(int i){
+        for(int j=0; j<Math.sqrt(i)+1; j++){
+            if(j*j==i) return true;
+        }
+        return false;
+    }
+
+    public boolean isCube(int i){
+        for(int j=0; j<Math.sqrt(i); j++){
+            if(j*j*j==i) return true;
+        }
+        return false;
     }
 }
