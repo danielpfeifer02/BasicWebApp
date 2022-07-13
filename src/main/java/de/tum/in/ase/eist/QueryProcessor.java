@@ -17,7 +17,7 @@ public class QueryProcessor {
         } else if (query.contains("plus")) {
             int index = 0;
             for(int j=0; j<queryList.length; j++) {
-                if (queryList[j]=="plus") {
+                if (queryList[j].equals("plus")) {
                     index = j;
                     break;
                 }
