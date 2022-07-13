@@ -31,7 +31,7 @@ public class QueryProcessor {
         } else if (query.contains("largest")) {
             int index = 0;
             for(int j=0; j<queryList.length; j++) {
-                if (queryList[j].equals("largest")) {
+                if (queryList[j].equals("largest:")) {
                     index = j;
                     break;
                 }
@@ -44,7 +44,7 @@ public class QueryProcessor {
         } else if (query.contains("square") && query.contains("cube")) {
             int index = 0;
             for(int j=0; j<queryList.length; j++) {
-                if (queryList[j].equals(":")) {
+                if (queryList[j].equals("cube:")) {
                     index = j+1;
                     break;
                 }
@@ -66,12 +66,6 @@ public class QueryProcessor {
             int first = Integer.parseInt(queryList[index-1]);
             int second = Integer.parseInt(queryList[index+2]);
             return Integer.valueOf(first*second).toString();
-        } else if (query.contains("")) {
-            return "";
-        } else if (query.contains("")) {
-            return "";
-        } else if (query.contains("")) {
-            return "";
         } else { // TODO extend the programm here
             return "";
         }
