@@ -38,13 +38,24 @@ public class QueryProcessor {
             }
             int[] vals = new int[queryList.length-index];
             for (int i=0; i<vals.length; i++){
-                Integer.parseInt(queryList[index+i]);
+                Integer.parseInt(queryList[index+i].replace(",", ""));
             }
             return Integer.valueOf(Arrays.stream(vals).max().orElse(0)).toString();
-        } else if (query.contains("")) {
+        } else if (query.contains("square") && query.contains("cube")) {
+            int index = 0;
             return "";
-        } else if (query.contains("")) {
-            return "";
+        } else if (query.contains("multiplied by")) {
+            int index = 0;
+            for(int j=0; j<queryList.length; j++) {
+                if (queryList[j].equals("multiplied")) {
+                    index = j;
+                    break;
+                }
+            }
+            if (index == 0 || index == queryList.length-2) {return "failure";}
+            int first = Integer.parseInt(queryList[index-1]);
+            int second = Integer.parseInt(queryList[index+2]);
+            return Integer.valueOf(first*second).toString();
         } else if (query.contains("")) {
             return "";
         } else if (query.contains("")) {
