@@ -22,6 +22,7 @@ public class QueryProcessor {
                     break;
                 }
             }
+            if (index == 0 || index == queryList.length-1) {return "failure";}
             int first = Integer.parseInt(queryList[index-1]);
             int second = Integer.parseInt(queryList[index+1]);
             return Integer.valueOf(first+second).toString();
